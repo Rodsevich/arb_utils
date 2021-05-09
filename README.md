@@ -203,3 +203,13 @@ print(newARB);
 }
 */
 ```
+
+#### Bin script
+
+To easily sort an arb and update original file, use
+
+```sh
+dart run arb_utils:sort <INPUT FILE>
+```
+
+where `<INPUT FILE>` is a path to the input file: `dart run arb_utils:sort example/test.arb`
