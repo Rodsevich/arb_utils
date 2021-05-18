@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:arb_utils/arb_utils.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
   if (args.isEmpty) {
     print('ERROR! Expected filepath to arb file.');
     exit(0);
@@ -11,13 +11,13 @@ void main(List<String> args) {
   }
 
   final file = File(args.first);
-  if (!file.existsSync()) {
-    print('ERROR! File ${args.first} does not exists');
+  if (!await file.exists()) {
+    print('ERROR! File ${file.path} does not exists');
     exit(0);
   }
 
-  final arbContents = file.readAsStringSync();
-  final sortedContents = sortARB(arbContents);
+  var arbContents = await file.readAsString();
+  arbContents = sortARB(arbContents);
 
-  file.writeAsStringSync(sortedContents);
+  await file.writeAsString(arbContents);
 }
