@@ -17,7 +17,7 @@ void main(List<String> args) async {
   }
 
   var arbContents = await file.readAsString();
-  arbContents = sortARB(arbContents);
+  arbContents = addMissingMetadata(arbContents);
 
   await file.writeAsString(arbContents);
 }

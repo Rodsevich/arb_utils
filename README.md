@@ -204,12 +204,32 @@ print(newARB);
 */
 ```
 
-#### Bin script
+#### Bin scripts
+
+Please run
+
+```sh
+dart pub global activate arb_utils
+```
+
+to enable arb_utils to be globally activated.
+
+##### Sort
 
 To easily sort an arb and update original file, use
 
 ```sh
-dart run arb_utils:sort <INPUT FILE>
+pub global run arb_utils:sort <INPUT FILE>
 ```
 
-where `<INPUT FILE>` is a path to the input file: `dart run arb_utils:sort example/test.arb`
+where `<INPUT FILE>` is a path to the input file.
+
+##### Add Missing Default Metadata
+
+To easily add missing metadata to an arb and update original file, use
+
+```sh
+pub global run arb_utils:generate_meta <INPUT FILE>
+```
+
+where `<INPUT FILE>` is a path to the input file.
