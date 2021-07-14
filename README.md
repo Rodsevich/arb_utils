@@ -52,8 +52,38 @@ will be converted to:
 }
 ```
 
+You could also provide a custom sort function.
+
+```dart
+var arb1 = '''
+{
+    "clave":"valor",
+    "@clave":{
+        "description": "Descripcion"
+    },
+    "key":"value",
+    "@key":{
+        "description": "Description"
+    }
+}''';
+var sortedArb1 = sortARB(arb1, (a, b) => a[1].compareTo(b[1]));
+print(sortedArb1);
+/*
+{
+    "key":"value",
+    "@key":{
+        "description": "Description"
+    },
+    "clave":"valor",
+    "@clave":{
+        "description": "Descripcion"
+    }
+}
+*/
+```
+
 #### diffARBs
-Will generate a .arb formatted string with the keys that doesn't appear in both the provided .arb formmated arguments
+Will generate a .arb formatted string with the keys that doesn't appear in both the provided .arb formatted arguments
 ```dart
 var arb1 = '''
 {
@@ -223,6 +253,18 @@ pub global run arb_utils:sort <INPUT FILE>
 ```
 
 where `<INPUT FILE>` is a path to the input file.
+
+Also, there are 3 flags for different sorting.
+
+--case-insensitive / -c
+--natural-ordering / -n
+--descending / -d
+
+For example, to sort with case insensitive and in descending order, use
+
+```sh
+pub global run arb_utils:sort -c -d <INPUT FILE>
+```
 
 ##### Add Missing Default Metadata
 
