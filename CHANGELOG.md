@@ -1,3 +1,7 @@
+## 0.1.0+1
+
+- better formatting of README.md + default dartfmt execution
+
 ## 0.1.0
 
 - [BREAKING] Case insensitive flag now is -i (it was -c, check #5)

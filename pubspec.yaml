@@ -1,6 +1,6 @@
 name: arb_utils
 description: A set of tools to work with .arb files (the preferred Dart way of dealing with i18n/l10n/translations)
-version: 0.1.0
+version: 0.1.0+1
 repository: https://github.com/Rodsevich/arb_utils
 homepage: https://gitlab.com/Rodsevich/arb_utils
 

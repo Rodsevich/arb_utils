@@ -11,12 +11,14 @@ String sortARB(String arbContents,
     bool caseInsensitive = false,
     bool naturalOrdering = false,
     bool descendingOrdering = false}) {
-  compareFunction ??= (a, b) => _commonSorts(a, b, caseInsensitive, naturalOrdering, descendingOrdering);
+  compareFunction ??= (a, b) =>
+      _commonSorts(a, b, caseInsensitive, naturalOrdering, descendingOrdering);
 
   final sorted = <String, dynamic>{};
   final Map<String, dynamic> contents = json.decode(arbContents);
 
-  final keys = contents.keys.where((key) => !key.startsWith('@')).toList()..sort(compareFunction);
+  final keys = contents.keys.where((key) => !key.startsWith('@')).toList()
+    ..sort(compareFunction);
 
   // Add at the beginning the [Global Attributes] of the .arb original file, if any
   // [link]: https://github.com/google/app-resource-bundle/wiki/ApplicationResourceBundleSpecification#global-attributes
@@ -36,7 +38,8 @@ String sortARB(String arbContents,
   return encoder.convert(sorted);
 }
 
-int _commonSorts(String a, String b, bool isCaseInsensitive, bool isNaturalOrdering, bool isDescending) {
+int _commonSorts(String a, String b, bool isCaseInsensitive,
+    bool isNaturalOrdering, bool isDescending) {
   var ascending = 1;
   if (isDescending) {
     ascending = -1;
