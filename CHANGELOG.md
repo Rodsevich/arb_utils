@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Feature add: sortARB() can take a custom sort function and add 3 flags for sorting options in bin script sort
+
 ## 0.0.3
 
 - Feature add: Add missingMetadata (James from DeFunc Art made the PR)
