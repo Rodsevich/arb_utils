@@ -2,17 +2,18 @@ import 'dart:convert';
 
 /// Sorts the .arb formatted String `arbContents` in alphabetically order
 /// of the keys, with the @key portion added below it's respective key
-String sortARB(String arbContents) {
+String sortARB(String arbContents,
+    [int Function(String, String) compare = Comparable.compare]) {
   final sorted = <String, dynamic>{};
   final Map<String, dynamic> contents = json.decode(arbContents);
 
   final keys = contents.keys.where((key) => !key.startsWith('@')).toList()
-    ..sort();
+    ..sort(compare);
 
   // Add at the beginning the [Global Attributes] of the .arb original file, if any
   // [link]: https://github.com/google/app-resource-bundle/wiki/ApplicationResourceBundleSpecification#global-attributes
   contents.keys.where((key) => key.startsWith('@@')).toList()
-    ..sort()
+    ..sort(compare)
     ..forEach((key) {
       sorted[key] = contents[key];
     });
