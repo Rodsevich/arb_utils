@@ -65,4 +65,264 @@ void main() {
       expect(sortARB(arb), expectedValue);
     });
   });
+  group('common sortings:', () {
+    const original = '''{
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  }
+}''';
+    test('default sorting', () {
+      const expected = '''{
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original), expected);
+    });
+    test('case insensitive sorting', () {
+      const expected = '''{
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, caseInsensitive: true), expected);
+    });
+    test('descending sorting', () {
+      const expected = '''{
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, descendingOrdering: true), expected);
+    });
+    test('natural ordering sorting', () {
+      const expected = '''{
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, naturalOrdering: true), expected);
+    });
+    test('descending + case insensitive sorting', () {
+      const expected = '''{
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, descendingOrdering: true, caseInsensitive: true), expected);
+    });
+    test('case insensitive + natural ordering sorting', () {
+      const expected = '''{
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, caseInsensitive: true, naturalOrdering: true), expected);
+    });
+    test('descending + natural ordering sorting', () {
+      const expected = '''{
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, descendingOrdering: true, naturalOrdering: true), expected);
+    });
+    test('case insensitive + natural ordering + descending sorting', () {
+      const expected = '''{
+  "zKey11": "a simple key",
+  "@zKey11": {
+    "description": "simple description"
+  },
+  "zKey2": "a simple key",
+  "@zKey2": {
+    "description": "simple description"
+  },
+  "zKey1": "a simple key",
+  "@zKey1": {
+    "description": "simple description"
+  },
+  "zKey": "a simple key",
+  "@zKey": {
+    "description": "simple description"
+  },
+  "ZKey": "a simple key",
+  "@ZKey": {
+    "description": "simple description"
+  },
+  "aKey": "a simple key",
+  "@aKey": {
+    "description": "simple description"
+  }
+}''';
+      expect(sortARB(original, caseInsensitive: true, naturalOrdering: true, descendingOrdering: true), expected);
+    });
+  });
 }

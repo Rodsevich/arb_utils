@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:arb_utils/arb_utils.dart';
 import 'package:args/args.dart';
-import 'package:collection/collection.dart';
 
 const String caseInsensitive = 'case-insensitive';
 const String naturalOrdering = 'natural-ordering';
@@ -28,29 +27,10 @@ void main(List<String> args) async {
   }
 
   var arbContents = await file.readAsString();
-  arbContents = sortARB(
-    arbContents,
-    (A, B) => sort(A, B, result[caseInsensitive], result[naturalOrdering],
-        result[descending]),
-  );
+  arbContents = sortARB(arbContents,
+      caseInsensitive: result[caseInsensitive],
+      naturalOrdering: result[naturalOrdering],
+      descendingOrdering: result[descending]);
 
   await file.writeAsString(arbContents);
-}
-
-int sort(String A, String B, bool isCaseInsensitive, bool isNaturalOrdering,
-    bool isDescending) {
-  var ascending = 1;
-  if (isDescending) {
-    ascending = -1;
-  }
-  if (isCaseInsensitive) {
-    A = A.toLowerCase();
-    B = B.toLowerCase();
-  }
-
-  if (isNaturalOrdering) {
-    return ascending * compareNatural(A, B);
-  } else {
-    return ascending * A.compareTo(B);
-  }
 }
