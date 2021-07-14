@@ -1,6 +1,10 @@
+## 0.1.0
+
+- [BREAKING] Case insensitive flag now is -i (it was -c, check #5)
+
 ## 0.0.4
 
-- Feature add: sortARB() can take a custom sort function and add 3 flags for sorting options in bin script sort
+- Feature add: sortARB() can take a custom sort function and add 3 flags for sorting options in bin script sort (2013612 made the PR) 
 
 ## 0.0.3
 

@@ -52,7 +52,7 @@ will be converted to:
 }
 ```
 
-You could also provide a custom sort function.
+You can also provide a custom sort function.
 
 ```dart
 var arb1 = '''
@@ -80,6 +80,12 @@ print(sortedArb1);
     }
 }
 */
+```
+
+Know that the most common sortings are implemented out of the box with the following parameters
+
+```dart
+var sorted = sortARB(arbString, caseInsensitive: false, naturalOrdering: false, descendingOrdering: false);
 ```
 
 #### diffARBs
@@ -234,7 +240,7 @@ print(newARB);
 */
 ```
 
-#### Bin scripts
+## Bin scripts
 
 Please run
 
@@ -256,7 +262,7 @@ where `<INPUT FILE>` is a path to the input file.
 
 Also, there are 3 flags for different sorting.
 
---case-insensitive / -c
+--case-insensitive / -i
 --natural-ordering / -n
 --descending / -d
 

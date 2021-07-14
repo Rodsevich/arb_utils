@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:arb_utils/arb_utils.dart';
 import 'package:args/args.dart';
 
-const String caseInsensitive = 'case-insensitive';
-const String naturalOrdering = 'natural-ordering';
-const String descending = 'descending';
+const String caseInsensitive = 'case-Insensitive';
+const String naturalOrdering = 'Natural-ordering';
+const String descending = 'Descending';
 
 void main(List<String> args) async {
   var parser = ArgParser();
-  parser.addFlag(caseInsensitive, abbr: 'c');
+  parser.addFlag(caseInsensitive, abbr: 'i');
   parser.addFlag(naturalOrdering, abbr: 'n');
   parser.addFlag(descending, abbr: 'd');
   var result = parser.parse(args);
