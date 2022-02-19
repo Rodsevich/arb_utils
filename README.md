@@ -10,7 +10,7 @@ A simple usage example:
 import 'package:arb_utils/arb_utils.dart';
 
 main() {
-  print('Generating .arb for translators...'); or HEAD^3 etc
+  print('Generating .arb for translators...');
   var chkout = 'latestTranslationsProcessedBranch'; // or a49630b726c or HEAD^3 etc
   Process.runSync('git', 'checkout $chkout'.split(' '));
   var mainARBOld = File('lib/l10n/intl_en.arb').readAsStringSync();
@@ -22,7 +22,22 @@ main() {
 }
 ```
 
-### Features
+## Features
+
+### ArbClient
+
+A way of getting your ARB translations dynamically, not hardcoded like `S.of(context).key`. It has been made with the pretension of supporting a way of getting the .arb files from the backend, on demand, but if it suits your use case, it just works. (PR are always welcome)  
+
+```dart
+var arbJson = json.decode(englishArbString);
+var arbClient = ArbClient(arbJson, onMissingKey: (key) => print('ARB key not found: $key'), exceptionOnMissingKey: kDebugMode, onMissingKeyValue: (key) => 'value of $key');
+print(arbClient['hellowWorld']); // Hello World!
+arbClient.reloadJson(json.decode(spanishArbString));
+print(arbClient['hellowWorld']); // ¡Hola Mundo!
+print(arbClient.get('helloName',{'name':'Nico'})); // ¡Hola Nico!
+```
+
+### Standalone functions
 
 #### sortARB
 alters the order of every .arb _key_ alphabetically, putting their _@key_ metadata below every one
