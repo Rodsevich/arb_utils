@@ -1,3 +1,6 @@
+## 0.2.0
+
+- ArbClient feature added (+ deps version bump, docs & tests)
 ## 0.1.0+1
 
 - better formatting of README.md + default dartfmt execution
