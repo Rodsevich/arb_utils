@@ -6,3 +6,4 @@ export 'src/primitives/diff.dart';
 export 'src/primitives/merge.dart';
 export 'src/primitives/sort.dart';
 export 'src/utils/process_new_keys.dart';
+export 'src/arb_client.dart';

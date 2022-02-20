@@ -29,8 +29,7 @@ main() {
 A way of getting your ARB translations dynamically, not hardcoded like `S.of(context).key`. It has been made with the pretension of supporting a way of getting the .arb files from the backend, on demand, but if it suits your use case, it just works. (PR are always welcome)  
 
 ```dart
-var arbJson = json.decode(englishArbString);
-var arbClient = ArbClient(arbJson, onMissingKey: (key) => print('ARB key not found: $key'), exceptionOnMissingKey: kDebugMode, onMissingKeyValue: (key) => 'value of $key');
+var arbClient = ArbClient(englishArbString, locale: 'en', onMissingKey: (key) => print('ARB key not found: $key'), exceptionOnMissingKey: kDebugMode, onMissingKeyValue: (key) => 'value of $key');
 print(arbClient['hellowWorld']); // Hello World!
 arbClient.reloadJson(json.decode(spanishArbString));
 print(arbClient['hellowWorld']); // ¡Hola Mundo!

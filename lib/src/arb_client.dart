@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:intl/intl.dart';
 import 'package:intl_utils/src/parser/icu_parser.dart';
 import 'package:intl_utils/src/parser/message_format.dart';
@@ -9,15 +11,18 @@ typedef MissingKeyCallback = void Function(String key);
 /// An object that handles translations dynamically, by processing the .arb JSON on demand.
 class ArbClient {
   bool exceptionOnMissingKey;
-  Map<String, dynamic> arbJson;
+  late String _arbSource;
+  String? locale;
+  late Map<String, dynamic> _arbJson;
   MissingKeyCallback onMissingKeyCallback;
   MissingKeyDefaultValue onMissingKeyDefaultValue;
   Map<String, dynamic> _arguments = {};
   //TODO: implement valueListenable
   //bool listenableValues;
 
-  ArbClient(this.arbJson,
-      {MissingKeyCallback? onMissingKeyCallback,
+  ArbClient(String arbSource,
+      {String? locale,
+      MissingKeyCallback? onMissingKeyCallback,
       bool? exceptionOnMissingKey,
       MissingKeyDefaultValue? onMissingKeyDefaultValue})
       : this.onMissingKeyCallback = (onMissingKeyCallback ??
@@ -26,14 +31,32 @@ class ArbClient {
             }),
         this.exceptionOnMissingKey = exceptionOnMissingKey ?? false,
         this.onMissingKeyDefaultValue =
-            (onMissingKeyDefaultValue ?? (key) => 'value of $key');
+            (onMissingKeyDefaultValue ?? (key) => 'value of $key') {
+    reloadArb(arbSource, locale: locale);
+  }
+
+  /// Gets the arbSource being used by this client.
+  String get arbSource => _arbSource;
+
+  void reloadArb(String arbSource, {String? locale}) {
+    this._arbSource = arbSource;
+    this._arbJson = json.decode(arbSource);
+    if (_arbJson.containsKey('@@locale')) {
+      this.locale = _arbJson['@@locale'];
+    } else if (locale != null) {
+      this.locale = locale;
+    } else {
+      throw ArbClientExceptionNoLocale();
+    }
+    Intl.defaultLocale = locale;
+  }
 
   /// Returns the value of the given `key`, processed with the given `arguments`, if any.
   /// The arguemtns are a list of values, in the order they appear in the arb value referenced by `key`.
   String get(String key, [Map<String, dynamic> arguments = const {}]) {
     _arguments = arguments;
-    if (arbJson.containsKey(key)) {
-      return _processedArbValue(key, arbJson[key]);
+    if (_arbJson.containsKey(key)) {
+      return _processedArbValue(key, _arbJson[key]);
     } else {
       if (exceptionOnMissingKey) {
         throw ArbClientExceptionNoKey(key, arguments);
@@ -51,7 +74,8 @@ class ArbClient {
   String _processedArbValue(String key, String value) {
     String ret;
     try {
-      var tryRet = parser.parse(value)?.map(_parsedElementToString).join('');
+      var tryRet =
+          IcuParser().parse(value)?.map(_parsedElementToString).join('');
       if (tryRet != null) {
         ret = tryRet;
       } else {
@@ -68,12 +92,10 @@ class ArbClient {
     return ret;
   }
 
-  var parser = IcuParser();
-
   _getArgument(String key) {
     var arg = _arguments[key];
     if (arg == null) {
-      throw ArbClientExceptionNoArgument(key, arbJson[key]);
+      throw ArbClientExceptionNoArgument(key, _arbJson[key]);
     }
     return arg;
   }
@@ -127,12 +149,18 @@ class ArbClient {
   }
 }
 
+class ArbClientExceptionNoLocale implements Exception {
+  String toString() =>
+      'No @@locale key found in the arb source nor locale provided. '
+      'The locale is needed for the translation logic, please provide one.';
+}
+
 class ArbClientExceptionNoKey implements Exception {
   final String key;
   final Map<String, dynamic> arguments;
 
   /// Thrown when `key` was searched but not found in the arb file.
-  ArbClientExceptionNoKey(this.key, [this.arguments = const {}]);
+  const ArbClientExceptionNoKey(this.key, [this.arguments = const {}]);
 
   String toString() =>
       'Exception: ARB key not found: $key' +
@@ -144,7 +172,7 @@ class ArbClientExceptionNoArgument implements Exception {
   final String arbValue;
 
   /// Thrown when `key` requires an argument for being translated but that wasn't provided
-  ArbClientExceptionNoArgument(this.key, this.arbValue);
+  const ArbClientExceptionNoArgument(this.key, this.arbValue);
 
   String toString() => 'Exception: ARB argument not provided: $key ($arbValue)';
 }
@@ -154,7 +182,7 @@ class ArbClientExceptionMalformedValue implements Exception {
   final String value;
 
   /// Thrown when `key` references an ARB value that is not ICU-compliant
-  ArbClientExceptionMalformedValue(this.key, this.value);
+  const ArbClientExceptionMalformedValue(this.key, this.value);
 
   String toString() =>
       "ArbClientException: ARB key '$key' points to a malformed value: $value";
