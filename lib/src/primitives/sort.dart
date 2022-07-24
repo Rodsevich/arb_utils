@@ -1,9 +1,10 @@
 import 'dart:convert';
+
 import 'package:collection/collection.dart';
 
-/// Sorts the .arb formatted String `arbContents` in alphabetically order
+/// Sorts the .arb formatted String `arbContents` in alphabetical order
 /// of the keys, with the @key portion added below it's respective key
-/// Optionally you can provide a `compareFunction` for customizing the sorting,
+/// Optionally you can provide a `compareFunction` for customizing the sorting.
 /// For simplicity sake there are common sorting features you can use when not
 /// defining the former parameter
 String sortARB(String arbContents,

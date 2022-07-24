@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-/// Processes the new/editted keys of the `mainARB` input (which should
+/// Processes the new/edited keys of the `mainARB` input (which should
 /// be the .arb used to add new keys in the developed app) comparing it
 /// with the .arb formatted `oldARBversion` and produces a .arb containing
 /// them as the output
