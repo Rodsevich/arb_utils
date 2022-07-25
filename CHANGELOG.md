@@ -1,3 +1,9 @@
+## 0.3.0
+
+- LanguageSelectorDropdown widget added
+- ProviderL10n provider added
+- languagesNames constant with languages names for English and it's self name. `es_AR` -> `Spanish` / `Castellano argentino`
+- .gitignore improvements
 ## 0.2.0
 
 - ArbClient feature added (+ deps version bump, docs & tests)

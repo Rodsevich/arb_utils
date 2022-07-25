@@ -24,9 +24,40 @@ main() {
 
 ## Features
 
+### Manual language switching helpers
+Normally there's the need of providing a way of manually changing the locale on runtime. Here is a super easy way of doing so depending on the state manager you use:  
+![translation on runtime demo](docs/translations_demo.gif)  
+The solution handles the persistance of the user selection for app restarts and so.
+#### Provider/BLoC
+Given that BLoC relies on Provider for working this solution will work easily for both state managers:
+```dart
+//make sure this line is written, your IDE may not add it automatically
+import 'package:provider/provider.dart';
+import 'package:arb_utils/state_managers/l10n_provider.dart';
+
+//prefix your MaterialApp(//... with the following:
+ChangeNotifierProvider(
+      create: (_) => ProviderL10n(),
+      child: Builder(builder: (context) {
+        return MaterialApp(
+          locale: context.watch<ProviderL10n>().locale,
+          supportedLocales: AppLocalizations.supportedLocales,
+
+//now add this widget wherever you want:
+import 'package:arb_utils/arb_utils_flutter.dart';
+
+LanguageSelectorDropdown(
+  supportedLocales: AppLocalizations.supportedLocales,
+  provider: context.read<ProviderL10n>(),
+)
+```
+
+#### MobX/GetX/GetIt/Riverpod/Binder/Redux/etc
+Pull Requests are always welcome :-D!
+
 ### ArbClient
 
-A way of getting your ARB translations dynamically, not hardcoded like `S.of(context).key`. It has been made with the pretension of supporting a way of getting the .arb files from the backend, on demand, but if it suits your use case, it just works. (PR are always welcome)  
+A way of getting your ARB translations dynamically, not hardcoded like `S.of(context).key` / `AppLocalizations.of(context).key`. It has been made with the pretension of supporting a way of getting the .arb files from the backend, on demand, but if it suits your use case, it just works. (PR are always welcome)  
 
 ```dart
 var arbClient = ArbClient(englishArbString, locale: 'en', onMissingKey: (key) => print('ARB key not found: $key'), exceptionOnMissingKey: kDebugMode, onMissingKeyValue: (key) => 'value of $key');
@@ -295,3 +326,7 @@ pub global run arb_utils:generate_meta <INPUT FILE>
 ```
 
 where `<INPUT FILE>` is a path to the input file.
+
+
+## Reference
+Check this article for understanding more about i18n with .arb in Flutter: [https://phrase.com/blog/posts/flutter-localization/](https://phrase.com/blog/posts/flutter-localization/)
