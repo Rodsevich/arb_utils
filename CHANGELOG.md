@@ -1,3 +1,7 @@
+## 0.3.1
+
+- Added executables: entry on pubspec.yaml
+
 ## 0.3.0
 
 - LanguageSelectorDropdown widget added
