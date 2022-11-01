@@ -25,11 +25,15 @@ main() {
 ## Features
 
 ### Manual language switching helpers
+
 Normally there's the need of providing a way of manually changing the locale on runtime. Here is a super easy way of doing so depending on the state manager you use:  
 ![translation on runtime demo](docs/translations_demo.gif)  
 The solution handles the persistance of the user selection for app restarts and so.
+
 #### Provider/BLoC
+
 Given that BLoC relies on Provider for working this solution will work easily for both state managers:
+
 ```dart
 //make sure this line is written, your IDE may not add it automatically
 import 'package:provider/provider.dart';
@@ -53,6 +57,7 @@ LanguageSelectorDropdown(
 ```
 
 #### MobX/GetX/GetIt/Riverpod/Binder/Redux/etc
+
 Pull Requests are always welcome :-D!
 
 ### ArbClient
@@ -70,7 +75,9 @@ print(arbClient.get('helloName',{'name':'Nico'})); // ¡Hola Nico!
 ### Standalone functions
 
 #### sortARB
+
 alters the order of every .arb _key_ alphabetically, putting their _@key_ metadata below every one
+
 ```json
 {
   "@aKey":{
@@ -83,7 +90,9 @@ alters the order of every .arb _key_ alphabetically, putting their _@key_ metada
   "aKey":"a simple key",
 }
 ```
+
 will be converted to:
+
 ```json
 {
   "aKey":"a simple key",
@@ -134,7 +143,9 @@ var sorted = sortARB(arbString, caseInsensitive: false, naturalOrdering: false, 
 ```
 
 #### diffARBs
+
 Will generate a .arb formatted string with the keys that doesn't appear in both the provided .arb formatted arguments
+
 ```dart
 var arb1 = '''
 {
@@ -175,7 +186,9 @@ print(diffed);
 ```
 
 #### mergeARBs
+
 Will include the latter .arb keys in the former one and output a .arb formatted string with the merged keys, privileging the latter ones
+
 ```dart
 var former = '''{
   "aKey":"a simple key",
@@ -230,6 +243,7 @@ print(merged);
 ```
 
 #### processNewKeys
+
 Compares an .arb formatted string with a previous version of itself and outputs a new .arb formatted string with the new keys found there (also the edited ones)
 
 ```dart
@@ -327,6 +341,6 @@ arb_utils generate-meta <INPUT FILE>
 
 where `<INPUT FILE>` is a path to the input file.
 
-
 ## Reference
+
 Check this article for understanding more about i18n with .arb in Flutter: [https://phrase.com/blog/posts/flutter-localization/](https://phrase.com/blog/posts/flutter-localization/)
