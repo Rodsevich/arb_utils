@@ -8,7 +8,7 @@ void main() {
     var finalContents = '';
     var output = <String>[];
 
-    void run_command(String command) {
+    void runCommand(String command) {
       final initialBuffer = StringBuffer();
       final finalBuffer = StringBuffer();
       read(sampleArbFile).forEach((line) {
@@ -30,12 +30,12 @@ void main() {
     });
 
     test('fails on unknown command', () async {
-      run_command('dart bin/arb_utils.dart unknown');
+      runCommand('dart bin/arb_utils.dart unknown');
       expect(
           output.first, contains('Could not find a command named "unknown".'));
     });
     test('generates the metadata', () async {
-      run_command('dart bin/arb_utils.dart generate-meta $sampleArbFile');
+      runCommand('dart bin/arb_utils.dart generate-meta $sampleArbFile');
       expect(initialContents, isNot(contains('"@noMetadataKey": {}')));
       expect(finalContents, contains('"@noMetadataKey": {}'));
     });

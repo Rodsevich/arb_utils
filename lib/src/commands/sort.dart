@@ -35,6 +35,7 @@ class SortCommand extends Command {
         defaultsTo: false);
   }
 
+  @override
   FutureOr<void> run() async {
     if (argResults!.rest.isEmpty) {
       print(red('ERROR! Expected filepath to arb file.'));
