@@ -15,7 +15,7 @@ void main() {
         initialBuffer.writeln(line);
       });
       initialContents = initialBuffer.toString();
-      output = command.start().lines;
+      output = command.toList();
       read(sampleArbFile).forEach((line) {
         finalBuffer.writeln(line);
       });

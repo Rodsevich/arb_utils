@@ -6,6 +6,5 @@
   "@metadataKey": {
     "description": "metadataDescription"
   },
-  "noMetadataKey": "noMetadataValue",
-  "@noMetadataKey": {}
+  "noMetadataKey": "noMetadataValue"
 }
