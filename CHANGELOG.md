@@ -1,3 +1,6 @@
+## 0.4.0
+
+- Changed scripts in favor of a single package:args approach.
 ## 0.3.1
 
 - Added executables: entry on pubspec.yaml

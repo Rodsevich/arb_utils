@@ -1,0 +1,11 @@
+{
+  "@@name": "en",
+  "@@url": "http://www.example.com/en",
+  "@@language": "en",
+  "metadataKey": "metadataValue",
+  "@metadataKey": {
+    "description": "metadataDescription"
+  },
+  "noMetadataKey": "noMetadataValue",
+  "@noMetadataKey": {}
+}
