@@ -2,9 +2,9 @@
   "@@name": "en",
   "@@url": "http://www.example.com/en",
   "@@language": "en",
+  "noMetadataKey": "noMetadataValue",
   "metadataKey": "metadataValue",
   "@metadataKey": {
     "description": "metadataDescription"
-  },
-  "noMetadataKey": "noMetadataValue"
+  }
 }

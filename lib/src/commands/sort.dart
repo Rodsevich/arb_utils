@@ -21,13 +21,13 @@ class SortCommand extends Command {
         help: 'Wether to distinguish between lowercase '
             'and uppercase while ordering the keys.',
         negatable: true,
-        defaultsTo: true);
+        defaultsTo: false);
     argParser.addFlag('natural-ordering',
         abbr: 'n',
         help: 'Wether to take numbers as a single character '
             'and order them according to their numeric value (instead of ASCII one).',
         negatable: true,
-        defaultsTo: true);
+        defaultsTo: false);
     argParser.addFlag('descending',
         abbr: 'd',
         help: 'Sort in descending order.',

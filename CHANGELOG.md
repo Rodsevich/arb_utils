@@ -1,3 +1,8 @@
+## 0.4.1
+
+- sort options default to disabled
+- gitignore improvements
+- documentation reflecting 0.4.0 changes merged
 ## 0.4.0
 
 - Changed scripts in favor of a single package:args approach.
