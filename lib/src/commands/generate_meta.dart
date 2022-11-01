@@ -25,6 +25,7 @@ class GenerateMetaCommand extends Command {
         defaultsTo: false);
   }
 
+  @override
   FutureOr<void> run() async {
     final args = argResults!.rest;
 

@@ -1,5 +1,4 @@
 import 'package:arb_utils/arb_utils.dart';
-import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -235,7 +234,8 @@ void main() {
     "description": "simple description"
   }
 }''';
-      expect(sortARB(original, descendingOrdering: true, caseInsensitive: true), expected);
+      expect(sortARB(original, descendingOrdering: true, caseInsensitive: true),
+          expected);
     });
     test('case insensitive + natural ordering sorting', () {
       const expected = '''{
@@ -264,7 +264,8 @@ void main() {
     "description": "simple description"
   }
 }''';
-      expect(sortARB(original, caseInsensitive: true, naturalOrdering: true), expected);
+      expect(sortARB(original, caseInsensitive: true, naturalOrdering: true),
+          expected);
     });
     test('descending + natural ordering sorting', () {
       const expected = '''{
@@ -293,7 +294,8 @@ void main() {
     "description": "simple description"
   }
 }''';
-      expect(sortARB(original, descendingOrdering: true, naturalOrdering: true), expected);
+      expect(sortARB(original, descendingOrdering: true, naturalOrdering: true),
+          expected);
     });
     test('case insensitive + natural ordering + descending sorting', () {
       const expected = '''{
@@ -322,7 +324,12 @@ void main() {
     "description": "simple description"
   }
 }''';
-      expect(sortARB(original, caseInsensitive: true, naturalOrdering: true, descendingOrdering: true), expected);
+      expect(
+          sortARB(original,
+              caseInsensitive: true,
+              naturalOrdering: true,
+              descendingOrdering: true),
+          expected);
     });
   });
 }
