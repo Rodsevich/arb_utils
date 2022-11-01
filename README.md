@@ -293,14 +293,14 @@ Please run
 dart pub global activate arb_utils
 ```
 
-to enable arb_utils to be globally activated.
+to enable `arb_utils` as an executable command on your system.  
 
 ##### Sort
 
 To easily sort an arb and update original file, use
 
 ```sh
-pub global run arb_utils:sort <INPUT FILE>
+arb_utils sort <INPUT FILE>
 ```
 
 where `<INPUT FILE>` is a path to the input file.
@@ -314,7 +314,7 @@ Also, there are 3 flags for different sorting.
 For example, to sort with case insensitive and in descending order, use
 
 ```sh
-pub global run arb_utils:sort -i -d <INPUT FILE>
+arb_utils sort -i -d <INPUT FILE>
 ```
 
 ##### Add Missing Default Metadata
@@ -322,7 +322,7 @@ pub global run arb_utils:sort -i -d <INPUT FILE>
 To easily add missing metadata to an arb and update original file, use
 
 ```sh
-pub global run arb_utils:generate_meta <INPUT FILE>
+arb_utils generate-meta <INPUT FILE>
 ```
 
 where `<INPUT FILE>` is a path to the input file.
