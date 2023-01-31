@@ -1,11 +1,17 @@
+## 0.5.0
+
+- Add cli command for "mergeARB" files
+
 ## 0.4.1
 
 - sort options default to disabled
 - gitignore improvements
 - documentation reflecting 0.4.0 changes merged
+
 ## 0.4.0
 
 - Changed scripts in favor of a single package:args approach.
+
 ## 0.3.1
 
 - Added executables: entry on pubspec.yaml
@@ -16,9 +22,11 @@
 - ProviderL10n provider added
 - languagesNames constant with languages names for English and it's self name. `es_AR` -> `Spanish` / `Castellano argentino`
 - .gitignore improvements
+
 ## 0.2.0
 
 - ArbClient feature added (+ deps version bump, docs & tests)
+
 ## 0.1.0+1
 
 - better formatting of README.md + default dartfmt execution
@@ -29,7 +37,7 @@
 
 ## 0.0.4
 
-- Feature add: sortARB() can take a custom sort function and add 3 flags for sorting options in bin script sort (2013612 made the PR) 
+- Feature add: sortARB() can take a custom sort function and add 3 flags for sorting options in bin script sort (2013612 made the PR)
 
 ## 0.0.3
 

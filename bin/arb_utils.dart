@@ -1,13 +1,14 @@
 import 'package:arb_utils/src/commands/generate_meta.dart';
+import 'package:arb_utils/src/commands/merge.dart';
 import 'package:arb_utils/src/commands/sort.dart';
 import 'package:args/command_runner.dart';
 import 'package:dcli/dcli.dart';
 
 void main(List<String> args) async {
-  final runner = CommandRunner(
-      'arb_utils', 'A set of utilities for working with arb files.')
+  final runner = CommandRunner('arb_utils', 'A set of utilities for working with arb files.')
     ..addCommand(GenerateMetaCommand())
-    ..addCommand(SortCommand());
+    ..addCommand(SortCommand())
+    ..addCommand(MergeCommand());
 
   try {
     await runner.run(args);
