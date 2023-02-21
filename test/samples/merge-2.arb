@@ -1,0 +1,6 @@
+{
+  "metadataKey": "Test overwrite of existing key",
+  "@metadataKey": {
+    "description": "metadataDescription"
+  }
+}
