@@ -1,3 +1,7 @@
+## 0.5.1
+
+- Update "dcli" and "intl" dependencies to support Dart 3
+
 ## 0.5.0
 
 - Add cli command for "mergeARB" files
