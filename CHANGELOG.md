@@ -1,4 +1,4 @@
-## 0.5.1
+## 0.6.0
 
 - Update "dcli" and "intl" dependencies to support Dart 3
 
