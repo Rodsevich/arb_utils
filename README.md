@@ -299,6 +299,36 @@ print(newARB);
 */
 ```
 
+#### checkDuplicateARB
+
+Check for duplicate values from arb file string. It returns Map contains duplicated key-value pairs.
+
+```dart
+final arb = '''{
+  "aKey":"a simple key",
+  "@aKey":{
+    "description":"simple description"
+  },
+  "bKey":"a simple key",
+  "@bKey":{
+    "description":"simple description"
+  },
+  "cKey":"a simple key",
+  "@cKey":{
+    "description":"simple description"
+  },
+  "zKey":"a simple key",
+  "@zKey":{
+    "description":"simple description"
+  }
+}''';
+final newARB = checkDuplicateARB(arb);
+print(newARB);
+/*
+{aKey: a simple key, bKey: a simple key, cKey: a simple key, zKey: a simple key}
+*/
+```
+
 ## Bin scripts
 
 Please run
@@ -340,6 +370,20 @@ arb_utils generate-meta <INPUT FILE>
 ```
 
 where `<INPUT FILE>` is a path to the input file.
+
+#### Check
+
+To check the arb files with sub command.
+
+##### Duplicate
+
+To check duplicate values from arb file, use
+
+```sh
+arb_utils check duplicate <...INPUT FILES>
+```
+
+where `<...INPUT FILES>` are path to the input file.
 
 ## Reference
 

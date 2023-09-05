@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 /// Check for duplicate values in arb file string.
-/// return map contains duplicated key-value pairs.
+/// return Map contains duplicated key-value pairs.
 Map<String, dynamic> checkDuplicateARB(String arbContent) {
   final Map<String, dynamic> arbJsonMap = json.decode(arbContent);
   arbJsonMap.removeWhere((key, value) => key.startsWith('@@'));
