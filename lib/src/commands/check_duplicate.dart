@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:arb_utils/arb_utils.dart';
+import 'package:arb_utils/src/primitives/check_duplicate.dart';
 import 'package:args/command_runner.dart';
 import 'package:dcli/dcli.dart';
 
@@ -40,34 +41,7 @@ class CheckDuplicateCommand extends Command {
       arbContent = mergeARBs(arbContent, mergeContent);
     }
 
-    final Map<String, dynamic> arbJsonMap = json.decode(arbContent);
-    arbJsonMap.removeWhere((key, value) => key.startsWith('@@'));
-    arbJsonMap.removeWhere((key, value) => key.startsWith('@'));
-    arbJsonMap.removeWhere((key, value) {
-      if (value is String) {
-        return RegExp(r'.*\{.*\}.*').hasMatch(value);
-      } else {
-        return false;
-      }
-    });
-
-    final Map<String, dynamic> duplicateMap = {};
-    for (final key in arbJsonMap.keys) {
-      if (duplicateMap.containsKey(key)) {
-        continue;
-      }
-      final value = arbJsonMap[key];
-      final List<String> duplicateValueKeys = arbJsonMap.keys
-          .where((k) => k != key)
-          .where((k) => arbJsonMap[k] == value)
-          .toList();
-      if (duplicateValueKeys.isNotEmpty) {
-        duplicateMap[key] = value;
-        for (final k in duplicateValueKeys) {
-          duplicateMap[k] = arbJsonMap[k];
-        }
-      }
-    }
+    final duplicateMap = checkDuplicateARB(arbContent);
 
     if (duplicateMap.isNotEmpty) {
       print(red('ERROR! Duplicate values found:'));
