@@ -12,7 +12,7 @@ class CheckDuplicatesCommand extends Command {
   String get name => 'duplicates';
 
   @override
-  String get description => 'Check for duplicate values in the arb file.';
+  String get description => 'Check for duplicated values in the arb file.';
 
   @override
   String get invocation =>
@@ -44,12 +44,12 @@ class CheckDuplicatesCommand extends Command {
     final duplicateMap = checkDuplicatesARB(arbContent);
 
     if (duplicateMap.isNotEmpty) {
-      print(red('ERROR! Duplicate values found:'));
+      print(red('ERROR! Duplicated values found:'));
       final encoder = JsonEncoder.withIndent('  ');
       print(red(encoder.convert(duplicateMap)));
       exit(1);
     }
 
-    print(green('No duplicate values found.'));
+    print(green('No duplicated values found.'));
   }
 }

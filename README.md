@@ -301,7 +301,7 @@ print(newARB);
 
 #### checkDuplicatesARB
 
-Check for duplicate values from arb file string. It returns Map contains duplicated key-value pairs.
+Check for duplicated values from arb file string. It returns Map contains duplicated key-value pairs.
 
 ```dart
 final arb = '''{
@@ -377,7 +377,7 @@ To check the arb files with sub command.
 
 ##### Duplicates
 
-To check duplicate values from arb file, use
+To check duplicated values from arb file, use
 
 ```sh
 arb_utils check duplicates <...INPUT FILES>
