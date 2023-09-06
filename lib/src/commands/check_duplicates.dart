@@ -15,33 +15,38 @@ class CheckDuplicatesCommand extends Command {
   String get description => 'Check for duplicated values in the arb file.';
 
   @override
-  String get invocation =>
-      '${super.invocation} <left-arb-file> <...arb-files-to-merge>';
+  String get invocation => '${super.invocation} <arb-file-target>';
 
   CheckDuplicatesCommand();
 
   @override
   FutureOr<void> run() async {
-    if (argResults!.rest.isEmpty) {
-      print(red('ERROR! Expected filepath to arb file.'));
+    final filePaths = argResults?.rest;
+    if (filePaths == null) {
+      print(red('ERROR! Unexpected state. argResults is null.'));
       exit(1);
     }
-
-    for (var filePath in argResults!.rest) {
-      var file = File(filePath);
-      if (!await file.exists()) {
-        print(red('ERROR! Input-File does not exist: $filePath.'));
-        exit(1);
-      }
+    if (filePaths.isEmpty) {
+      print(red('ERROR! Expected filepath to arb file.'));
+      exit(2);
+    } else if (filePaths.length > 1) {
+      print(yellow(
+          'WARNING! Ignoring excess arguments ${filePaths.sublist(1)}'));
     }
 
-    var arbContent = await File(argResults!.rest.first).readAsString();
-    for (var i = 1; i < argResults!.rest.length; i++) {
-      var mergeContent = await File(argResults!.rest[i]).readAsString();
-      arbContent = mergeARBs(arbContent, mergeContent);
+    final file = File(filePaths.first);
+    if (!await file.exists()) {
+      print(red('ERROR! File ${file.path} does not exists'));
+      return;
     }
 
-    final duplicateMap = checkDuplicatesARB(arbContent);
+    var arbContents = await file.readAsString();
+    for (var i = 1; i < filePaths.length; i++) {
+      var mergeContent = await File(filePaths[i]).readAsString();
+      arbContents = mergeARBs(arbContents, mergeContent);
+    }
+
+    final duplicateMap = checkDuplicatesARB(arbContents);
 
     if (duplicateMap.isNotEmpty) {
       print(red('ERROR! Duplicated values found:'));
