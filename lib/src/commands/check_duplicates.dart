@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:arb_utils/arb_utils.dart';
-import 'package:arb_utils/src/primitives/check_duplicate.dart';
+import 'package:arb_utils/src/primitives/check_duplicates.dart';
 import 'package:args/command_runner.dart';
 import 'package:dcli/dcli.dart';
 
-class CheckDuplicateCommand extends Command {
+class CheckDuplicatesCommand extends Command {
   @override
-  String get name => 'duplicate';
+  String get name => 'duplicates';
 
   @override
   String get description => 'Check for duplicate values in the arb file.';
@@ -18,7 +18,7 @@ class CheckDuplicateCommand extends Command {
   String get invocation =>
       '${super.invocation} <left-arb-file> <...arb-files-to-merge>';
 
-  CheckDuplicateCommand();
+  CheckDuplicatesCommand();
 
   @override
   FutureOr<void> run() async {
@@ -41,7 +41,7 @@ class CheckDuplicateCommand extends Command {
       arbContent = mergeARBs(arbContent, mergeContent);
     }
 
-    final duplicateMap = checkDuplicateARB(arbContent);
+    final duplicateMap = checkDuplicatesARB(arbContent);
 
     if (duplicateMap.isNotEmpty) {
       print(red('ERROR! Duplicate values found:'));

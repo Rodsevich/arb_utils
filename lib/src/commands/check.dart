@@ -1,4 +1,4 @@
-import 'package:arb_utils/src/commands/check_duplicate.dart';
+import 'package:arb_utils/src/commands/check_duplicates.dart';
 import 'package:args/command_runner.dart';
 
 class CheckCommand extends Command {
@@ -9,6 +9,6 @@ class CheckCommand extends Command {
   String get description => 'Check the arb files with sub command.';
 
   CheckCommand() {
-    addSubcommand(CheckDuplicateCommand());
+    addSubcommand(CheckDuplicatesCommand());
   }
 }

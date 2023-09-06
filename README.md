@@ -299,7 +299,7 @@ print(newARB);
 */
 ```
 
-#### checkDuplicateARB
+#### checkDuplicatesARB
 
 Check for duplicate values from arb file string. It returns Map contains duplicated key-value pairs.
 
@@ -322,7 +322,7 @@ final arb = '''{
     "description":"simple description"
   }
 }''';
-final newARB = checkDuplicateARB(arb);
+final newARB = checkDuplicatesARB(arb);
 print(newARB);
 /*
 {aKey: a simple key, bKey: a simple key, cKey: a simple key, zKey: a simple key}
@@ -375,12 +375,12 @@ where `<INPUT FILE>` is a path to the input file.
 
 To check the arb files with sub command.
 
-##### Duplicate
+##### Duplicates
 
 To check duplicate values from arb file, use
 
 ```sh
-arb_utils check duplicate <...INPUT FILES>
+arb_utils check duplicates <...INPUT FILES>
 ```
 
 where `<...INPUT FILES>` are path to the input file.

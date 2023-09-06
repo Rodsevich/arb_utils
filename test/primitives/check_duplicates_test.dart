@@ -1,4 +1,4 @@
-import 'package:arb_utils/src/primitives/check_duplicate.dart';
+import 'package:arb_utils/src/primitives/check_duplicates.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -60,10 +60,10 @@ void main() {
       'duplicate1': 'duplicateValue1',
       'duplicate2': 'duplicateValue1',
     };
-    expect(checkDuplicateARB(duplicatedArb), duplicatedMap);
+    expect(checkDuplicatesARB(duplicatedArb), duplicatedMap);
   });
 
   test('Return empty map when no duplicated value found.', () {
-    expect(checkDuplicateARB(noDuplicatedArb), {});
+    expect(checkDuplicatesARB(noDuplicatedArb), {});
   });
 }
