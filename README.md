@@ -380,10 +380,10 @@ To check the arb files with sub command.
 To check duplicated values from arb file, use
 
 ```sh
-arb_utils check duplicates <...INPUT FILES>
+arb_utils check duplicates <INPUT FILE>
 ```
 
-where `<...INPUT FILES>` are path to the input file.
+where `<INPUT FILE>` is a path to the input file.
 
 ## Reference
 
