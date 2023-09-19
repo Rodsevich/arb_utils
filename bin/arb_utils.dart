@@ -1,4 +1,4 @@
-import 'package:arb_utils/src/commands/check.dart';
+import 'package:arb_utils/src/commands/check_duplicates.dart';
 import 'package:arb_utils/src/commands/generate_meta.dart';
 import 'package:arb_utils/src/commands/merge.dart';
 import 'package:arb_utils/src/commands/sort.dart';
@@ -10,7 +10,7 @@ void main(List<String> args) async {
     ..addCommand(GenerateMetaCommand())
     ..addCommand(SortCommand())
     ..addCommand(MergeCommand())
-    ..addCommand(CheckCommand());
+    ..addCommand(CheckDuplicatesCommand());
 
   try {
     await runner.run(args);

@@ -1,4 +1,4 @@
-import 'package:arb_utils/src/primitives/check_duplicates.dart';
+import 'package:arb_utils/src/primitives/check_duplicated_values.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -29,7 +29,7 @@ void main() {
     }
   }
   ''';
-  const noDuplicatedArb = '''
+  const notDuplicatedArb = '''
   {
     "@@name": "en",
     "@@url": "http://www.example.com/en",
@@ -55,15 +55,15 @@ void main() {
   }
   ''';
 
-  test('Return duplicated map when duplicated value found.', () {
+  test('Return Map containing duplicated values when duplicated values found.', () {
     final duplicatedMap = {
       'duplicate1': 'duplicateValue1',
       'duplicate2': 'duplicateValue1',
     };
-    expect(checkDuplicatesARB(duplicatedArb), duplicatedMap);
+    expect(checkDuplicatedValuesARB(duplicatedArb), duplicatedMap);
   });
 
-  test('Return empty map when no duplicated value found.', () {
-    expect(checkDuplicatesARB(noDuplicatedArb), {});
+  test('Return empty Map when no duplicated values found.', () {
+    expect(checkDuplicatedValuesARB(notDuplicatedArb), {});
   });
 }
