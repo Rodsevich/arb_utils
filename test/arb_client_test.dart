@@ -203,7 +203,7 @@ main() {
       expect(() => client = ArbClient(englishArb),
           throwsA(isA<ArbClientExceptionNoLocale>()));
       expect(ArbClient(englishArb, locale: 'en'), isA<ArbClient>());
-      expect(ArbClient('{"@@locale":"en",' + englishArb.substring(1)),
+      expect(ArbClient('{"@@locale":"en",${englishArb.substring(1)}'),
           isA<ArbClient>());
     });
   });

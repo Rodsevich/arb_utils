@@ -13,7 +13,7 @@ void main(List<String> args) async {
   try {
     await runner.run(args);
   } on UsageException catch (e) {
-    print(yellow('Usage exception: ' + e.message));
+    print(yellow('Usage exception: ${e.message}'));
     print(blue(e.usage));
   } catch (e, st) {
     print(red('Unknown error, please report it: $e $st'));
