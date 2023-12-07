@@ -165,8 +165,7 @@ class ArbClientExceptionNoKey implements Exception {
 
   @override
   String toString() =>
-      'Exception: ARB key not found: $key' +
-      (arguments.isNotEmpty ? '($arguments)' : '');
+      'Exception: ARB key not found: $key${arguments.isNotEmpty ? '($arguments)' : ''}';
 }
 
 class ArbClientExceptionNoArgument implements Exception {

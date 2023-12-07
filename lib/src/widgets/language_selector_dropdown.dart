@@ -25,7 +25,7 @@ typedef LanguageChangeHandler = Function(Locale chosenLocale);
 /// A [DropdownButton] prepared for displaying the supported languages. Use with `AppLocalizations.supportedLocales`
 class LanguageSelectorDropdown extends StatelessWidget {
   LanguageSelectorDropdown({
-    Key? key,
+    super.key,
 
     /// Provided the [AppLocalizations.supportedLocales]
     required this.supportedLocales,
@@ -39,7 +39,7 @@ class LanguageSelectorDropdown extends StatelessWidget {
 
     /// If a [ProviderL10n] is provided, the locale of it will be changed according to the language chosen
     this.provider,
-  }) : super(key: key) {
+  }) {
     var supportedLocalesTags = supportedLocales.map((e) => e.toLanguageTag());
     final Map<String, Map<String, String>> localesListUnsorted = {};
     languagesNames.keys
