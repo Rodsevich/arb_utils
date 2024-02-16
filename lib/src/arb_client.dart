@@ -144,7 +144,14 @@ class ArbClient {
       case ElementType.argument:
         return _getArgument(element.value).toString();
       case ElementType.select:
-        throw UnimplementedError('PRs are always welcome! :-D');
+        element as SelectElement;
+        final cases = <Object, String>{};
+
+        for (final option in element.options) { 
+          cases[option.name] = option.value.first.value;
+        }
+
+        return Intl.select(_getArgument(element.value), cases);
     }
   }
 }
