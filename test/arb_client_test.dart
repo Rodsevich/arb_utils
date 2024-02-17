@@ -22,6 +22,13 @@ var englishArb = '''{
     "placeholders": {
       "sex": {}
     }
+  },
+  "trafficLight": "{light, select, red{stop} yellow{ready to go} green{go} other{-}}",
+  "@trafficLight": {
+    "description": "Select testing key",
+    "placeholders": {
+      "light": {}
+    }
   }
 }''';
 var spanishArb = '''{
@@ -89,6 +96,16 @@ main() {
           equals('The birthday of them'));
       expect(client.get('pageHomeBirthday', {'sex': 'other'}),
           equals('The birthday of them'));
+    });
+    test('retrieves the correct translation with select', () {
+      expect(client.get('trafficLight', {'light': 'red'}),
+          equals('stop'));
+      expect(client.get('trafficLight', {'light': 'yellow'}),
+          equals('ready to go'));
+      expect(client.get('trafficLight', {'light': 'green'}),
+          equals('go'));
+      expect(client.get('trafficLight', {'light': 'ngangong'}),
+          equals('-'));
     });
   });
 
