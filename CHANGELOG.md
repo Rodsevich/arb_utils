@@ -1,3 +1,7 @@
+## 0.7.0
+
+- now supports select
+
 ## 0.6.1
 
 - Update "dcli"

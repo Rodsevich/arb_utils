@@ -33,11 +33,11 @@ void main() {
       runCommand('dart bin/arb_utils.dart unknown');
       expect(
           output.first, contains('Could not find a command named "unknown".'));
-    }, skip: 'dcli is unstable on lats version');
+    }, skip: 'dcli is unstable on last version');
     test('generates the metadata', () async {
       runCommand('dart bin/arb_utils.dart generate-meta $sampleArbFile');
       expect(initialContents, isNot(contains('"@noMetadataKey": {}')));
       expect(finalContents, contains('"@noMetadataKey": {}'));
-    }, skip: 'dcli is unstable on lats version');
+    }, skip: 'dcli is unstable on last version');
   });
 }
