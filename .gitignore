@@ -128,3 +128,4 @@ app.*.map.json
 !.idea/runConfigurations/
 
 .vscode
+pubspec.lock
