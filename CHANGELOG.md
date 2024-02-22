@@ -1,3 +1,6 @@
+## 0.7.1
+ - bump version of dcli for fixing [#23](https://github.com/Rodsevich/arb_utils/issues/23)
+
 ## 0.7.0
 
 - now supports select
