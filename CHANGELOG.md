@@ -1,3 +1,6 @@
+## 0.8.0
+ - Switch "dcli" to stable version and constraint dependency of "dart_console2" for fixing [#26](https://github.com/Rodsevich/arb_utils/issues/26) 
+
 ## 0.7.1
  - bump version of dcli for fixing [#23](https://github.com/Rodsevich/arb_utils/issues/23)
 
