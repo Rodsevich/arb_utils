@@ -16,12 +16,11 @@ dependencies:
   intl_utils: ^2.8.7
   shared_preferences: ^2.2.2
   dcli: ^3.4.0
+  dart_console2: <3.1.0 # constraint dependency to avoid internal errors in dcli
 
 dev_dependencies:
   lints: ^3.0.0
   test: ^1.25.2
-  # pin dependency to avoid internal errors in dcli
-  dart_console2: 3.0.0
 
 executables:
   arb_utils:
