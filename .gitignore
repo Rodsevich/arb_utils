@@ -129,3 +129,4 @@ app.*.map.json
 
 .vscode
 pubspec.lock
+/test/samples/*.backup
