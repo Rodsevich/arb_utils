@@ -1,3 +1,6 @@
+## 0.8.1
+ - Compatibility with dcli 4.0.0 for bugfixes and compatyibility with Dart 3.3.4
+
 ## 0.8.0
  - Switch "dcli" to stable version and constraint dependency of "dart_console2" for fixing [#26](https://github.com/Rodsevich/arb_utils/issues/26) 
 
