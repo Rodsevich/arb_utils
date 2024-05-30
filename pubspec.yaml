@@ -1,6 +1,6 @@
 name: arb_utils
 description: A set of tools to work with .arb files (the preferred Dart way of dealing with i18n/l10n/translations)
-version: 0.8.1
+version: 0.8.2
 repository: https://github.com/Rodsevich/arb_utils
 homepage: https://gitlab.com/Rodsevich/arb_utils
 
@@ -16,7 +16,7 @@ dependencies:
   intl_utils: ^2.8.7
   shared_preferences: ^2.2.2
   dcli: ^4.0.0
-  dart_console2: ^3.1.1
+  dart_console: ^4.1.0
 
 dev_dependencies:
   lints: ^3.0.0

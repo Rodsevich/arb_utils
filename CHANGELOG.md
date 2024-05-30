@@ -1,3 +1,6 @@
+## 0.8.2
+ - Replaced deprecated dart_console2 with dart_console
+
 ## 0.8.1
  - Compatibility with dcli 4.0.0 for bugfixes and compatyibility with Dart 3.3.4
 
