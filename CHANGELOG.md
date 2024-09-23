@@ -1,3 +1,6 @@
+## 0.8.3
+ - Version bump
+ 
 ## 0.8.2
  - Replaced deprecated dart_console2 with dart_console
 
