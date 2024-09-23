@@ -1,17 +1,24 @@
+# CHANGELOG
+
 ## 0.8.3
- - Version bump
- 
+
+- Version bump
+
 ## 0.8.2
- - Replaced deprecated dart_console2 with dart_console
+
+- Replaced deprecated dart_console2 with dart_console
 
 ## 0.8.1
- - Compatibility with dcli 4.0.0 for bugfixes and compatyibility with Dart 3.3.4
+
+- Compatibility with dcli 4.0.0 for bugfixes and compatibility with Dart 3.3.4
 
 ## 0.8.0
- - Switch "dcli" to stable version and constraint dependency of "dart_console2" for fixing [#26](https://github.com/Rodsevich/arb_utils/issues/26) 
+
+- Switch "dcli" to stable version and constraint dependency of "dart_console2" for fixing [#26](https://github.com/Rodsevich/arb_utils/issues/26)
 
 ## 0.7.1
- - bump version of dcli for fixing [#23](https://github.com/Rodsevich/arb_utils/issues/23)
+
+- bump version of dcli for fixing [#23](https://github.com/Rodsevich/arb_utils/issues/23)
 
 ## 0.7.0
 
@@ -72,7 +79,7 @@
 
 ## 0.0.2
 
-- NNBD and fix bug in sortARB that omitted Global Attributes (James from DeFunc Art made a fork fixing it)
+- Not Null By Default and fix a bug in sortARB that omitted Global Attributes (James from DeFunc Art made a fork fixing it)
 
 ## 0.0.1
 

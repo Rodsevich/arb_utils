@@ -52,7 +52,7 @@ class ArbClient {
   }
 
   /// Returns the value of the given `key`, processed with the given `arguments`, if any.
-  /// The arguemtns are a list of values, in the order they appear in the arb value referenced by `key`.
+  /// The arguments are a list of values, in the order they appear in the arb value referenced by `key`.
   String get(String key, [Map<String, dynamic> arguments = const {}]) {
     _arguments = arguments;
     if (_arbJson.containsKey(key)) {
@@ -147,7 +147,7 @@ class ArbClient {
         element as SelectElement;
         final cases = <Object, String>{};
 
-        for (final option in element.options) { 
+        for (final option in element.options) {
           cases[option.name] = option.value.first.value;
         }
 

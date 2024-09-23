@@ -20,7 +20,7 @@
 .classpath
 .project
 .settings/
-.vscode/*
+# .vscode/*
 
 # Flutter repo-specific
 /bin/cache/
@@ -127,6 +127,6 @@ app.*.map.json
 !.idea/dictionaries/
 !.idea/runConfigurations/
 
-.vscode
+# .vscode
 pubspec.lock
 /test/samples/*.backup
