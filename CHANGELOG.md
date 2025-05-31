@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.9.0
+
+- Updated dependencies:
+  - dcli: ^7.0.3
+
 ## 0.8.3
 
 - Version bump
