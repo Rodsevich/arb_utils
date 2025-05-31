@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.10.0
+
+*   **Added:** New custom lint rule (`hardcoded_text_in_widget`) to detect hardcoded string literals in widget `build` methods.
+    *   This lint suggests creating ARB labels named with the widget's class name (e.g., `MyWidget_text`).
+    *   The linter is implemented in a separate package `arb_utils_lints` (version synchronized with `arb_utils`) and integrated as a dev dependency.
+
+## 0.9.0
+
+- Updated dependencies:
+  - dcli: ^7.0.3
+
 ## 0.8.3
 
 - Version bump

@@ -1,0 +1,16 @@
+name: arb_utils_lints
+description: Custom lints for arb_utils.
+version: 0.10.0
+publish_to: none # It's an internal linter for now
+
+environment:
+  sdk: '>=2.19.0 <4.0.0' # Match arb_utils
+
+dependencies:
+  analyzer: ^6.0.0 # Or latest compatible
+  analyzer_plugin: ^0.11.0 # Or latest compatible
+  custom_lint_builder: ^0.6.0 # Or latest compatible (align with custom_lint version 0.7.5 found earlier)
+
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.25.2
