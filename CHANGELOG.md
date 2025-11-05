@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.9.0
+
+- Added support for intl 0.20.2
+
 ## 0.8.3
 
 - Version bump
