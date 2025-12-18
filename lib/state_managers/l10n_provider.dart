@@ -19,10 +19,20 @@ class ProviderL10n extends ChangeNotifier {
     });
   }
 
+  /// Gets or sets the current application locale.
+  ///
+  /// If `locale` is `null`, the locale preference is removed and the app
+  /// falls back to the system language.
+  ///
+  /// Note: The locale is persisted asynchronously in SharedPreferences.
   Locale? get locale => _locale;
   set locale(Locale? locale) {
     SharedPreferences.getInstance().then((preferences) {
-      preferences.setString('locale', locale.toString());
+      if (locale == null) {
+        preferences.remove('locale');
+      } else {
+        preferences.setString('locale', locale.toString());
+      }
       _locale = locale;
       notifyListeners();
     });
