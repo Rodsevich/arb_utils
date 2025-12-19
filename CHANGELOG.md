@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.10.0
+
+- Solved issue with default locale in null
+
+
 ## 0.9.0
 
 - Added support for intl 0.20.2
