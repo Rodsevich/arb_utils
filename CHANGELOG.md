@@ -2,7 +2,7 @@
 
 ## 0.10.1
 
-- Adjust dcli dependency to allow >=6.0.0 and <=8.3.0
+- Adjust dcli dependency to allow >=6.0.0 and <=9.0.0
 
 ## 0.10.0
 
