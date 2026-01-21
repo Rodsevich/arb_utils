@@ -1,9 +1,5 @@
 # CHANGELOG
 
-## 0.10.1
-
-- Adjust dcli dependency to allow >=6.0.0 and <=8.3.0
-
 ## 0.10.0
 
 - Solved issue with default locale in null
