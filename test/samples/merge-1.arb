@@ -1,3 +1,4 @@
 {
-  "newKey": "Test insert of new key"
+  "newKey": "Test insert of new key",
+  "auto_key": "auto_value"
 }

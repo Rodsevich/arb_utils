@@ -319,6 +319,17 @@ arb_utils sort <INPUT FILE>
 
 where `<INPUT FILE>` is a path to the input file.
 
+##### Add Entries
+
+To programmatically add new entries to one or more arb files, use
+
+```sh
+arb_utils add '<JSON STRING>' [FILES...]
+```
+
+Where `<JSON STRING>` is a JSON object containing the keys and values to add.
+If no files are specified, the command will recursively find all `.arb` files in the current directory and its subdirectories.
+
 Also, there are 3 flags for different sorting.
 
 + --case-insensitive / -i
