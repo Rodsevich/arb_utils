@@ -2,7 +2,8 @@
 
 ## 0.11.0
 
-- Added `add` command for programmatically adding entries to .arb files.
+- Added improved `add` command with human-friendly and JSON template syntax.
+- Added support for multiple translations in a single command.
 - Added recursive auto-discovery for .arb files.
 - Added `AGENTS.md` for AI agent instructions.
 - Fixed pretty-printing for merge and add operations.

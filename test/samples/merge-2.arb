@@ -2,6 +2,5 @@
   "metadataKey": "Test overwrite of existing key",
   "@metadataKey": {
     "description": "metadataDescription"
-  },
-  "auto_key": "auto_value"
+  }
 }

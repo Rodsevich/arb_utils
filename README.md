@@ -321,14 +321,25 @@ where `<INPUT FILE>` is a path to the input file.
 
 ##### Add Entries
 
-To programmatically add new entries to one or more arb files, use
+To programmatically add new entries to one or more arb files in one go, use
 
 ```sh
-arb_utils add '<JSON STRING>' [FILES...]
+arb_utils add <key> --description '<description>' [locale:value...]
 ```
 
-Where `<JSON STRING>` is a JSON object containing the keys and values to add.
-If no files are specified, the command will recursively find all `.arb` files in the current directory and its subdirectories.
+Example:
+```sh
+arb_utils add welcome --description 'Welcome message' en:'Welcome!' es:'¡Bienvenido!'
+```
+
+Or using a JSON template:
+```sh
+arb_utils add --json '{"welcome": "$VAL$", "@welcome": {"description": "Welcome message"}}' en:'Welcome!' es:'¡Bienvenido!'
+```
+
+The command will recursively find all `.arb` files in the current directory and its subdirectories by default. To specify specific files, use the `--files` (or `-f`) flag.
+New entries are added to the tail of the files by default. Use the `--sort` (or `-s`) flag to sort the files after adding.
+Note: The command will fail if values for all locales present in the `.arb` files are not provided.
 
 Also, there are 3 flags for different sorting.
 

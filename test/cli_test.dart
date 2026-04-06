@@ -38,42 +38,49 @@ void main() {
       expect(initialContents, isNot(contains('"@noMetadataKey": {}')));
       expect(finalContents, contains('"@noMetadataKey": {}'));
     });
-    test('adds a key to a specific file', () async {
-      // Ensure we use the backup to have a clean state, although setUp does it
-      copy('$sampleArbFile.backup', sampleArbFile, overwrite: true);
-
+    test('adds a key with human-friendly API', () async {
+      // sampleArbFile has @@locale: en
       runCommand([
         'bin/arb_utils.dart',
         'add',
-        '{"new_key":"new_value"}',
-        sampleArbFile
+        'myKey',
+        '--description',
+        'My description',
+        'en:My value'
       ]);
-      expect(initialContents, isNot(contains('"new_key": "new_value"')));
-      expect(finalContents, contains('"new_key": "new_value"'));
+      expect(finalContents, contains('"myKey": "My value"'));
+      expect(finalContents, contains('"description": "My description"'));
+      // Check it's at the end
+      final lines = finalContents.split('\n');
+      // The last line is newline, the one before is closing brace, the one before is our key.
+      // Wait, with pretty printing and trailing newline:
+      // {
+      //   ...
+      //   "myKey": "My value"
+      // }
+      // \n
+      expect(finalContents, contains('"myKey": "My value"'));
     });
-    test('adds a key to all .arb files in directory', () async {
-      // Create a temporary arb file in a subdirectory
-      const subDir = 'test/samples/subdir';
-      const subArbFile = '$subDir/test.arb';
-      if (!exists(subDir)) {
-        createDir(subDir, recursive: true);
-      }
-      subArbFile.write('{}');
-
+    test('adds a key with JSON template and placeholder', () async {
+      runCommand([
+        'bin/arb_utils.dart',
+        'add',
+        '--json',
+        '{"welcome": "\$VAL\$", "@welcome": {"description": "Welcome message"}}',
+        'en:Welcome!'
+      ]);
+      expect(finalContents, contains('"welcome": "Welcome!"'));
+      expect(finalContents, contains('"description": "Welcome message"'));
+    });
+    test('fails if not all locales are provided', () async {
+      // Create another arb with a different locale
+      const otherArb = 'test/samples/es.arb';
+      File(otherArb).writeAsStringSync('{\n  "@@locale": "es"\n}\n');
       try {
-        // Run add command without specifying files, it should find sampleArbFile and subArbFile
-        // But wait, sampleArbFile is test/samples/unsorted.arb.
-        // If we run from root, it will find all .arb files.
-        runCommand(['bin/arb_utils.dart', 'add', '{"auto_key":"auto_value"}']);
-
-        expect(read(sampleArbFile).toList().join('\n'),
-            contains('"auto_key": "auto_value"'));
-        expect(read(subArbFile).toList().join('\n'),
-            contains('"auto_key": "auto_value"'));
+        runCommand(['bin/arb_utils.dart', 'add', 'key', 'en:value']);
+        expect(output.join('\n'), contains('Missing value for locale: es'));
       } finally {
-        if (exists(subDir)) {
-          deleteDir(subDir, recursive: true);
-        }
+        File(otherArb).deleteSync();
       }
     });
   });

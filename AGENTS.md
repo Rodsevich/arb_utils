@@ -4,46 +4,35 @@ This repository provides `arb_utils`, a CLI tool for working with `.arb` files i
 
 ## Key Command: `add`
 
-The `add` command is particularly useful for AI agents to programmatically add new translations or entries to `.arb` files.
+The `add` command is designed to easily add multiple translations for a single key at once.
 
 ### Usage
 
+#### Human-friendly syntax
 ```sh
-arb_utils add '<json-string>' [file-paths...]
+arb_utils add <key> --description '<description>' [locale:value...]
+```
+Example:
+```sh
+arb_utils add welcome --description 'Welcome message' en:'Welcome!' es:'¡Bienvenido!'
 ```
 
-- `<json-string>`: A valid JSON string containing the keys and values to add.
-- `[file-paths...]`: (Optional) One or more paths to `.arb` files. If omitted, the command will recursively find and update all `.arb` files in the current directory and its subdirectories.
-
-### Examples
-
-Add a single key to all `.arb` files:
+#### JSON template syntax (with placeholder)
 ```sh
-arb_utils add '{"myNewKey": "My New Value"}'
+arb_utils add --json '<template>' [locale:value...]
+```
+Example:
+```sh
+arb_utils add --json '{"welcome": "$VAL$", "@welcome": {"description": "Welcome message"}}' en:'Welcome!' es:'¡Bienvenido!'
 ```
 
-Add multiple keys and metadata to specific files:
-```sh
-arb_utils add '{"welcome": "Welcome!", "@welcome": {"description": "Welcome message"}}' lib/l10n/app_en.arb
-```
+### Important Notes
+1. **Auto-Discovery**: By default, it recursively finds all `.arb` files in the current directory. To specify files, use the `--files` flag: `--files file1.arb --files file2.arb`.
+2. **Strict Locale Check**: The command will fail if you don't provide a value for every locale found in the `.arb` files.
+3. **Tail Addition**: New entries are added to the end of the files by default. Use the `--sort` (or `-s`) flag to sort the files after adding.
+4. **Pretty-printing**: Output is formatted with 2-space indentation and a trailing newline.
 
 ## Other Commands
-
-- `sort`: Sorts keys in an `.arb` file alphabetically, keeping metadata next to its key.
-  ```sh
-  arb_utils sort <file-path>
-  ```
-- `generate-meta`: Adds missing metadata placeholders for all keys in an `.arb` file.
-  ```sh
-  arb_utils generate-meta <file-path>
-  ```
-- `merge`: Merges multiple `.arb` files.
-  ```sh
-  arb_utils merge <file1> <file2> -o <output-file>
-  ```
-
-## Best Practices for Agents
-
-1. **Auto-Discovery**: If you don't know the exact paths to `.arb` files, just use `arb_utils add '{"key": "value"}'` and it will find them for you.
-2. **Batching**: You can add multiple translations in a single command by providing a larger JSON object.
-3. **Consistency**: The `add` command uses pretty-printing (2-space indentation) to maintain a clean file structure.
+- `sort`: `arb_utils sort <file-path>`
+- `generate-meta`: `arb_utils generate-meta <file-path>`
+- `merge`: `arb_utils merge <file1> <file2> -o <output-file>`
