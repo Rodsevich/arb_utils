@@ -83,5 +83,17 @@ void main() {
         File(otherArb).deleteSync();
       }
     });
+    test('lists matching keys', () async {
+      runCommand(['bin/arb_utils.dart', 'keys', 'metadata']);
+      // sampleArbFile contains "metadataKey" and "@metadataKey"
+      // "@" keys should be excluded
+      expect(output, contains('metadataKey'));
+      expect(output, isNot(contains('@metadataKey')));
+    });
+    test('lists keys with regex', () async {
+      runCommand(['bin/arb_utils.dart', 'keys', '^no']);
+      expect(output, contains('noMetadataKey'));
+      expect(output, isNot(contains('metadataKey')));
+    });
   });
 }
