@@ -52,14 +52,17 @@ void main() {
       expect(finalContents, contains('"description": "My description"'));
       // Check it's at the end
       final lines = finalContents.split('\n');
-      // The last line is newline, the one before is closing brace, the one before is our key.
-      // Wait, with pretty printing and trailing newline:
+      // With pretty printing and trailing newline:
       // {
       //   ...
-      //   "myKey": "My value"
+      //   "myKey": "My value",
+      //   "@myKey": {
+      //     "description": "My description"
+      //   }
       // }
       // \n
-      expect(finalContents, contains('"myKey": "My value"'));
+      expect(lines[lines.length - 2], contains('}'));
+      expect(lines[lines.length - 3], contains('"description": "My description"'));
     });
     test('adds a key with JSON template and placeholder', () async {
       runCommand([
@@ -94,6 +97,30 @@ void main() {
       runCommand(['bin/arb_utils.dart', 'keys', '^no']);
       expect(output, contains('noMetadataKey'));
       expect(output, isNot(contains('metadataKey')));
+    });
+    test('sorts an arb file', () async {
+      runCommand(['bin/arb_utils.dart', 'sort', sampleArbFile]);
+      // "noMetadataKey" should come before "metadataKey" alphabetically if sorted
+      // But wait, "metadataKey" starts with 'm', "noMetadataKey" starts with 'n'.
+      // 'm' comes before 'n'.
+      final mIndex = finalContents.indexOf('"metadataKey":');
+      final nIndex = finalContents.indexOf('"noMetadataKey":');
+      expect(mIndex, lessThan(nIndex));
+    });
+    test('merges arb files', () async {
+      const arb1 = 'test/samples/merge-1.arb';
+      const arb2 = 'test/samples/merge-2.arb';
+      const outputArb = 'test/samples/merged_output.arb';
+      try {
+        runCommand(['bin/arb_utils.dart', 'merge', arb1, arb2, '-o', outputArb]);
+        final content = File(outputArb).readAsStringSync();
+        expect(content, contains('"newKey": "Test insert of new key"'));
+        expect(content, contains('"metadataKey": "Test overwrite of existing key"'));
+      } finally {
+        if (File(outputArb).existsSync()) {
+          File(outputArb).deleteSync();
+        }
+      }
     });
   });
 }

@@ -320,8 +320,8 @@ arb_utils sort <INPUT FILE>
 where `<INPUT FILE>` is a path to the input file.
 
 Also, there are 3 flags for different sorting:
-+ **Case insensitive** (`--case-insensitive` / `-i`): Wether to distinguish between lowercase and uppercase while ordering the keys.
-+ **Natural ordering** (`--natural-ordering` / `-n`): Wether to take numbers as a single character and order them according to their numeric value (instead of ASCII one).
++ **Case insensitive** (`--case-insensitive` / `-i`): Whether to distinguish between lowercase and uppercase while ordering the keys.
++ **Natural ordering** (`--natural-ordering` / `-n`): Whether to take numbers as a single character and order them according to their numeric value (instead of ASCII one).
 + **Descending** (`--descending` / `-d`): Sort in descending order.
 
 For example, to sort with case insensitive and in descending order, use:
