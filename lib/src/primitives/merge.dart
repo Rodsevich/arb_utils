@@ -11,5 +11,7 @@ String mergeARBs(String arb1Contents, String arb2Contents) {
   for (var key in json2.keys) {
     ret[key] = json2[key];
   }
-  return json.encode(ret);
+
+  final encoder = JsonEncoder.withIndent('  ');
+  return '${encoder.convert(ret)}\n';
 }

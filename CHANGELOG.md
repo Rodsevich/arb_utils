@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.11.0
+
+- Added improved `add` command with human-friendly and JSON template syntax.
+- Added support for multiple translations in a single command.
+- Added recursive auto-discovery for .arb files.
+- Added `AGENTS.md` for AI agent instructions.
+- Fixed pretty-printing for merge and add operations.
+
 ## 0.10.1
 
 - Adjust dcli dependency to allow >=6.0.0 and <=9.0.0

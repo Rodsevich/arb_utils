@@ -319,17 +319,48 @@ arb_utils sort <INPUT FILE>
 
 where `<INPUT FILE>` is a path to the input file.
 
-Also, there are 3 flags for different sorting.
+Also, there are 3 flags for different sorting:
++ **Case insensitive** (`--case-insensitive` / `-i`): Whether to distinguish between lowercase and uppercase while ordering the keys.
++ **Natural ordering** (`--natural-ordering` / `-n`): Whether to take numbers as a single character and order them according to their numeric value (instead of ASCII one).
++ **Descending** (`--descending` / `-d`): Sort in descending order.
 
-+ --case-insensitive / -i
-+ --natural-ordering / -n
-+ --descending / -d
-
-For example, to sort with case insensitive and in descending order, use
+For example, to sort with case insensitive and in descending order, use:
 
 ```sh
 arb_utils sort -i -d <INPUT FILE>
 ```
+
+##### Add Entries
+
+To programmatically add new entries to one or more arb files in one go, use
+
+```sh
+arb_utils add <key> --description '<description>' [locale:value...]
+```
+
+Example:
+```sh
+arb_utils add welcome --description 'Welcome message' en:'Welcome!' es:'¡Bienvenido!'
+```
+
+Or using a JSON template:
+```sh
+arb_utils add --json '{"welcome": "$VAL$", "@welcome": {"description": "Welcome message"}}' en:'Welcome!' es:'¡Bienvenido!'
+```
+
+The command will recursively find all `.arb` files in the current directory and its subdirectories by default. To specify specific files, use the `--files` (or `-f`) flag.
+New entries are added to the tail of the files by default. Use the `--sort` (or `-s`) flag to sort the files after adding.
+Note: The command will fail if values for all locales present in the `.arb` files are not provided.
+
+##### List Keys
+
+To list keys matching a regexp, use
+
+```sh
+arb_utils keys <regexp>
+```
+
+This will search in all `.arb` files found recursively by default. You can also specify files with `--files` flag.
 
 ##### Add Missing Default Metadata
 

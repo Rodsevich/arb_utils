@@ -1,3 +1,5 @@
+import 'package:arb_utils/src/commands/add.dart';
+import 'package:arb_utils/src/commands/keys.dart';
 import 'package:arb_utils/src/commands/generate_meta.dart';
 import 'package:arb_utils/src/commands/merge.dart';
 import 'package:arb_utils/src/commands/sort.dart';
@@ -8,7 +10,9 @@ void main(List<String> args) async {
   final runner = CommandRunner('arb_utils', 'A set of utilities for working with arb files.')
     ..addCommand(GenerateMetaCommand())
     ..addCommand(SortCommand())
-    ..addCommand(MergeCommand());
+    ..addCommand(MergeCommand())
+    ..addCommand(AddCommand())
+    ..addCommand(KeysCommand());
 
   try {
     await runner.run(args);
