@@ -26,12 +26,12 @@ arb_utils add welcome --description 'Welcome message' en:'Welcome!' es:'¡Bienve
 #### Complex syntax (Plurals, Select, etc.)
 For complex ARB values, use the `--json` flag with the `$VAL$` placeholder.
 ```sh
-arb_utils add --json '{"messageCount": "{count, plural, =0{No messages} one{1 message} other{{count} messages}}", "@messageCount": {"description": "Plural message example", "placeholders": {"count": {"type": "int"}}}}' en:'{count, plural, =0{No messages} one{1 message} other{{count} messages}}' es:'{count, plural, =0{No hay mensajes} one{1 mensaje} other{{count} mensajes}}'
+arb_utils add --json '{"messageCount": "$VAL$", "@messageCount": {"description": "Plural message example", "placeholders": {"count": {"type": "int","example":42}}}}' en:'{count, plural, =0{No messages} one{1 message} other{{count} messages}}' es:'{count, plural, =0{No hay mensajes} one{1 mensaje} other{{count} mensajes}}'
 ```
 
 Another example with `select`:
 ```sh
-arb_utils add --json '{"genderSelect": "{gender, select, male{He} female{She} other{They}}", "@genderSelect": {"description": "Select example", "placeholders": {"gender": {"type": "String"}}}}' en:'{gender, select, male{He} female{She} other{They}}' es:'{gender, select, male{Él} female{Ella} other{Ellos}}'
+arb_utils add --json '{"genderSelect": "$VAL$", "@genderSelect": {"description": "Select example", "placeholders": {"gender": {"type": "String"}}}}' en:'{gender, select, male{He} female{She} other{They}}' es:'{gender, select, male{Él} female{Ella} other{Ellos}}'
 ```
 
 ## Agent Skills
